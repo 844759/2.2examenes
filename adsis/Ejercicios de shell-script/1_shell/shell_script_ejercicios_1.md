@@ -90,6 +90,3 @@
 
 ## Aclaraciones 
    - Si pones el flag g, es posible que las repeticiones del estilo .\{5,\} o a\{5\} no puedan funcionar
-
-
-
