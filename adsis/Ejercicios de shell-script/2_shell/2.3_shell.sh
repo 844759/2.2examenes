@@ -17,6 +17,7 @@ do
     # Se utiliza el comando sed con el flag -i para modificar el archivo en la
     # linea seleccionada en este caso la segunda indicada con 2i, posteriormente 
     # se usa date para obtener la fecha y seleccionamos el archivo que se modificara
-    sed -i "2i # $licencia\n# $(date)\n" "$archivo"
+    sed -i "2i # $licencia\n# $(date)" "$archivo"
 
 done < $1
+
