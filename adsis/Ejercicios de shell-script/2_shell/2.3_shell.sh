@@ -20,4 +20,3 @@ do
     sed -i "2i # $licencia\n# $(date)" "$archivo"
 
 done < $1
-
