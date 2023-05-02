@@ -1,0 +1,4 @@
+jperez:x:10912:1009:Juan Perez,,,:/home/al-03-04/jperez:/bin/bash
+mfernan:x:10913:1009:Manuel Fernandez,,,:/home/al-02-03/mfernan:/bin/bash
+mgarcia:x:10914:1009:Maria Garcia ,,,:/home/al-03-04/mgarcia:/bin/bash
+lruiz:x:10915:1009:Luis Ruiz ,,,:/home/al-03-04/lruiz:/bin/bash

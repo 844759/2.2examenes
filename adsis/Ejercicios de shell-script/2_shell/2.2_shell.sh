@@ -12,18 +12,15 @@ fi
 pre=0
 apr=0
 
-while read linea
+while read nombre apellido nota1 nota2
 do
-    letra=$( echo $linea | cut -c 1 )           # Cortamos la primera letra del nombre
-    nombre=$( echo $linea | cut -d' ' -f1 )     # Cortamos el nombre de la linea
-    apellido=$( echo $linea | cut -d' ' -f2 )   # Cortamos el apellido de la linea
-    nota=$( echo $linea | cut -d' ' -f3 )       # Cortamos la nota de la linea
+    letra=$( echo $nombre | cut -c 1 )           # Cortamos la primera letra del nombre
 
     dir=$( echo ""$letra""$apellido"@unizar.es" | tr  'A-Z' 'a-z' )  # Recogemos la direccion del mail y pasamos las mayusculas a minusculas 
 
     pre=$((pre+1))                            # Incrementamos la variable contador de alumnos presentados  
 
-    if [ "$nota" = "apto" ]
+    if [ "$nota1" = "apto" ]
     then
         apr=$((apr+1))                            # Incrementamos la variable contador de alumnos aprobados 
         echo "mailto: "$dir" body: "$nombre" "$apellido" "$nota". Presentados: "$pre", aprobados: "$apr"."  # Mostramos el resultado mostrando la informacion pertinente.
