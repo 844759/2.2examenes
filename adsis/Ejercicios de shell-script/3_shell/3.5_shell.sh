@@ -15,7 +15,9 @@ cd $1
 
 while read linea
 do
-    archivo=$( echo "$linea" | cut -d' ' -f10)
+    # Sustituye todos los espacios en medio que aparezcan más de una vez por uno solo, esto se realiza para que 
+    # el cut funcione correctamente y corte el campo descrito
+    archivo=$( echo "$linea" | sed -r 's/ +/ /g' | cut -d' ' -f9)
     # Se utiliza el comando sed con el flag -i para modificar el archivo en la
     # linea seleccionada en este caso la segunda indicada con 2i, posteriormente 
     # se usa date para obtener la fecha y seleccionamos el archivo que se modificara
