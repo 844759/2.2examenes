@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -eq 1 ]
+if [ $# -ne 1 ]
 then
     echo "Se ha de introducir un fichero de usuarios"
     exit 1
