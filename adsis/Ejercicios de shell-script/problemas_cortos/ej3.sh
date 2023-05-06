@@ -6,6 +6,12 @@ then
     exit 1
 fi
 
+if [ "$UID" -ne 0 ]
+then
+    echo "Se necesitan privilegios de administracion"
+    exit 1
+fi
+
 while read user
 do
 
