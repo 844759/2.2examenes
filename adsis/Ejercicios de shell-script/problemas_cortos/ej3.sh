@@ -25,8 +25,14 @@ do
 
     else
         echo "Usuario no registrado en el sistema se procede a eliminar sus archivos"
-        rm -r "/home/"$user""
+
+        if [ -d "/home/"$user"" ]
+        then
+            rm -r "/home/"$user""
+        fi
+        
     fi
 
-
 done < $1
+
+exit 0
