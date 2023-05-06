@@ -23,3 +23,19 @@ Con el comando cat se muestra el interior del fichero que se ha introducido como
 Para la realizacion de este script los permisos que debe de tener el directorio .ssh, obteniendo los permisos de la siguiente manera ls -la /home/win | grep ".ssh$", si este script produce una salida con grep el usuario existira y los permisos se podran recoger con el comando anterior añadiendo | cut -c 1-4, de manera alternativa se puede comprobar cada uno de los permisos con comandos usando test.
 
 Por convenio se utilizara el comando cat /etc/passwd | grep "$user" para saber si el usuario esta en el sistema o no, para ejecutar el script se necesitaran privilegios de administracion por ello la manera de ejecutarlo sera sudo ./ej3.sh users.txt.
+
+## Ejercicio 4
+
+El script asigna a dos variables un valor inicial, una variable FRANCES y ALLEN con valores 10 y 9 respectivamente, a la variable i se le asigna un valor aleatorio, despues en un if se pone como condicion que esta variable sea menor que la variable ALLEN con valor 9, si se entra en el if se muestra el valor de la variable.
+
+El símbolo ./ indica que el archivo se encuentra en el directorio actual y $0 es una variable que almacena el nombre del archivo de script que se está ejecutando actualmente. Por lo tanto, ./$0 se traduce como "ejecuta el archivo de script actual en el directorio actual".
+
+Por tanto el script se ejecuta en bucle hasta que i sea mayor igual a la variable allen.
+
+## Ejercicio 5
+
+Para la realizacion de este problema se usa el comando curl, el cual nos muestra el codigo html de una pagina web.
+
+¿Dentro del temario?
+
+## Ejercicio 6
