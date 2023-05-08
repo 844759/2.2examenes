@@ -48,3 +48,16 @@ En este caso, -mtime +30 filtra los archivos que no han sido modificados en los 
 
 En el comando find se especifica -rf para añadir archivos a este y -cf para crearlo, se utiliza --files-from /dev/null, para especificar que el contenido del tar es inicialmente vacio, se usa este archivo para crealo puesto esta vacio, en la parte del exec {} representa el archivo que find encuentra y el \; indica que el comando -exec se ha completado.
 
+## Ejercicio 7
+
+Para la realizacion del script se necesita que en el comando passwd se le introduzca la constraseña dos veces, por ello el uso del comando echo -e "$2\n$2" que se comunica con passwd a traves de una pipe
+
+Linux dispone de un mecanismo más sofisticado, denominado PAM, en el cual se puede establecer diferentes normas para la creacion de contraseñas en el sistema, ejemplo de ello: 
+
+password requisite pam_passwdqc.so min=12,10,10,8,6 retry=3
+
+Diap(Control de Accesos nº21)
+
+## Ejercicio 8
+
+Para el ejercicio 8 simplemente se podria hacer con un solo comando grep, el cual muestra las lineas que cumplen que tiene una terminal bash.
