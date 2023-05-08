@@ -39,3 +39,12 @@ Para la realizacion de este problema se usa el comando curl, el cual nos muestra
 ¿Dentro del temario?
 
 ## Ejercicio 6
+
+Para la realizacion de este script, en la parte 2 se han tenido en cuenta las siguientes cosas:
+
+El parámetro -mtime +30 en el comando find se utiliza para buscar archivos cuya última modificación haya ocurrido hace más de 30 días. El valor numérico que sigue al signo + indica la cantidad de días en el pasado.
+
+En este caso, -mtime +30 filtra los archivos que no han sido modificados en los últimos 30 días (un mes aproximadamente). Al usar este parámetro con find, el comando devolverá una lista de archivos que cumplen con este criterio de antigüedad.
+
+En el comando find se especifica -rf para añadir archivos a este y -cf para crearlo, se utiliza --files-from /dev/null, para especificar que el contenido del tar es inicialmente vacio, se usa este archivo para crealo puesto esta vacio, en la parte del exec {} representa el archivo que find encuentra y el \; indica que el comando -exec se ha completado.
+
