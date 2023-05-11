@@ -61,3 +61,19 @@ Diap(Control de Accesos nº21)
 ## Ejercicio 8
 
 Para el ejercicio 8 simplemente se podria hacer con un solo comando grep, el cual muestra las lineas que cumplen que tiene una terminal bash.
+
+## Ejercicio 9
+
+Para este ejercicio se ha usado el concepto del anterior, para ello recogemos primero la shell y despues buscamos cada usuario con esa shell.
+
+## Ejercicio 10
+
+Para el siguiente ejercicio se ha leido el fichero .bash_history localizado en el directorio del usuario y el cual contiene el historial de los comandos ejecutados en terminal por el usuario del home.
+
+## Ejercicio 11
+
+Para el ejercicio 11 se ha usado la herramienta ping -w 5 cuyo comportamiento se especifica en un comentario, además se usa grep en hosts para saber si el ip y el host existen actualmente en ell fichero.
+
+## Ejercicio 13
+
+Falta al ssh decirle que falta el entorno interactivo no funcionaria cmd...
