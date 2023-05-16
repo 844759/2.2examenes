@@ -72,8 +72,50 @@ Para el siguiente ejercicio se ha leido el fichero .bash_history localizado en e
 
 ## Ejercicio 11
 
-Para el ejercicio 11 se ha usado la herramienta ping -w 5 cuyo comportamiento se especifica en un comentario, además se usa grep en hosts para saber si el ip y el host existen actualmente en ell fichero.
+Para el ejercicio 11 se ha usado la herramienta ping -w 5 cuyo comportamiento se especifica en un comentario, además se usa grep en hosts para saber si el ip y el host existen actualmente en el fichero.
+
+## Ejercicio 12
+
+Para la realización del script se ha utilizado un fichero de texto, puesto que traceroute produce diversos timeouts, por ello se mete una salida del comando por entrada estandar. En cuanto comentarios a destacar para el procesamiento del problema realizado, se utiliza la linea para calcular la media:
+
+avg_rtt=$(echo "scale=3; ($v1 + $v2 + $v3) / 3" | bc)
+
+En el comando se pone echo scale=3, esto es debido a que si no se indica muestra los numeros enteros, es decir si tenemos 3.14, muestra 3, por ello hay que indicar el numero de decimales que se usara bc, introduciendo de esta manera la operacion ("scale=3; ($v1 + $v2 + $v3) / 3") a realizar para la calculadora bc, a la cual se le introducen operaciones matematicas.
+
+Se utiliza la siguiente linea para usar un array de valores calculados:
+
+rtt[$nodos]=$(echo "$ip: $avg_rtt")
+
+Para cada valor de $nodos se añade una entrada distinta, para más tarde usar un bucle for (for nodos in "${!rtt[@]}") en el cual se iterara por cada componente del array.
+
+Mas tarde se usa:
+
+| sort -rn -k3 | head -n5
+
+En la salida del bucle for para meter en entrada estandar lo impreso en este y ordenar los distintos elementos numericamente.
 
 ## Ejercicio 13
 
 Falta al ssh decirle que falta el entorno interactivo no funcionaria cmd...
+
+## Ejercicio 14
+
+Podria fallar porque se usa mv sin los archivos entre comillados, esto puede acusar que se lea un archivo como por ejemplo "prob\ a.txt" el cual tiene nombre prob a.txt, pero el comando mv no seria capaz de interpretarlo sin las comillas.
+
+arreglo: mv "$source_file" "$destination_file"
+
+## Ejercicio 15
+
+El resultado obtenido sera una llamada a f con un argumento, la clausula del if se cumplira, por ello se mostrara hello, pero como esta llamada a la funcion f esta concatenada mediante una pipe a una segunda llamada, entonces se realiza la segunda llamada metiendole por entrada estandar la salida de la anterior llamada.
+
+En este caso la clausula del if no se cumplira y nos meteremos en el else, una vez alli leeremos una linea de la entrada mediante read metiendolo en una variable nueva var, para posteriormente mostrar hello por la salida del programa.
+
+Posteriormente mostrara hello mediante un echo de la variable var pero no la guardara de la ejecuccion de f, por ello simplemente mostrara una linea vacia por pantalla.
+
+## Ejercicio 16
+
+La condicion del if es de forma literal, es decir se busca un string que tenga la forma de re, por ello no se va a cumplir nunca, para corregirlo habria que usar grep y more para mostrar el contenido del archivo, por otro lado el for iteraria por archivos que pueden ser directorios pero no ficheros y que se llamen de forma dir.txt, hay que comprobar primero que es un fichero.
+
+Cabe destacar que para usar =~ para expresiones regulares hay que usar doble corchete de la forma: [[ $file =~ $re ]], es necesario poner re sin comillas puesto lo pillara como un string literal.
+
+## Ejercicio 17
