@@ -148,6 +148,7 @@ La diferencia entre SNAT y MASQ, es que SNAT cambia la dirección origen del paq
 ## Ejercicio 20
 
 iptables -A INPUT -p tcp --dport 80 -m state --state NEW -m recent --set
+
 iptables -A INPUT -p tcp --dport 80 -m state --state NEW -m recent --update --seconds 60 --hitcount 16 -j DROP
 
 Estas dos reglas trabajan juntas para limitar las conexiones nuevas al puerto 80 a no más de 15 por minuto desde una misma dirección IP.
@@ -167,4 +168,22 @@ Estas dos reglas trabajan juntas para limitar las conexiones nuevas al puerto 80
 Con estas reglas en su lugar, cualquier dirección IP que intente iniciar más de 15 nuevas conexiones al puerto 80 en un minuto será bloqueada por el resto de ese minuto.
 
 ## Ejercicio 21
+
+Para añadir el script para que lo haga en la periocidad indicada mediante cron, tendremos que editar el fichero /etc/crontab añadiendo la siguiente linea:
+
+*/5 10 * * 1-2 /etc/ej21.sh
+
+Se pone */5 para que se ejecute cada 5 minutos en la hora 10 de lunes a martes 1-2.
+
+Como aditivos a este problema se puede poner un fichero de salida que vaya mostrando la salida del programa redirigiendo su salida a un txt y su salida de error a la salida estandar. Además habra que comprobar primero que el script tiene permisos de ejecucion con test -x:
+
+(test -x /etc/ej21.sh && /etc/ej21.sh > salida.txt 2>&1)
+
+No se le pasa el ejecutable como tal, se le pasa la localización del script.
+
+## Ejercicio 22
+
+Como la maquina que se usa para la ejecucion del script no estara siempre encendida se usara acron en vez de cron para la ejecuccion de este comando.
+
+@daily 5 cron.daily (test -x /etc/ej22.sh && /etc/ej22.sh > /dev/null 2>&1)
 
