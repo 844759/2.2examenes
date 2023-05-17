@@ -119,3 +119,52 @@ La condicion del if es de forma literal, es decir se busca un string que tenga l
 Cabe destacar que para usar =~ para expresiones regulares hay que usar doble corchete de la forma: [[ $file =~ $re ]], es necesario poner re sin comillas puesto lo pillara como un string literal.
 
 ## Ejercicio 17
+
+La configuracion de iptables definida utiliza la tabla filter de iptables, con la cadena INPUT, estamos aceptando todo el trafico externo al host, con la cadena FORWARD estamos destinando los paquetes a otra interfaz y con la cadena OUTPUT estamos aceptando cualquier salida de paquetes, es decir no hay ninguna regla definida para ninguna de las opciones por defecto.
+
+## Ejercicio 18
+
+Tal y como se puede ver en el firewall expuesto tenemos tres interfaces eth0, eth1 y loopback, al principio del script se borran las reglas que iptables tenian definidas y se restablece iptables, posteriormente mediante -P se retiran todas las politicas por defecto que habia en iptables para establecer las nuestras propias, mediante echo vamos modificando los flags necesarios de ip_fordward y demás flags necesarios.
+
+Posteriormente se permite todo el trafico de la interfaz loopback, posteriormente mediante el uso de -m conntrack --cstate ESTABLISHED,RELATED se permite el trafico de conexiones ya establecidas, más tarde todo paquete que se encuentre en un estado invalido se rechaza mediante -m conntrack --ctstate INVALID -j DROP.
+
+Posteriormente todas las conexiones ssh que se realicen detras del firewall son aceptadas mediante:
+
+iptables -A INPUT -i eth1 -s 192.168.0.0/24 \
+-p tcp --dport 22 -m conntrack --ctstate NEW -j ACCEPT
+
+Despues se aceptan todas las conexiones a internet a traves de la interfaz eth0, usando el comando:
+
+iptables -A OUTPUT -o eth0 -d 0.0.0.0/0 -j ACCEPT
+
+Detras del firewall se permite el acceso a internet del trafico interno a la red LAN.
+
+La razón por la que hay que poner MASQUERADE es porque tenemos un protocolo DHCP, es decir una ip dinamica, esto es porque los demás dispositivos para acceder a internet deben pasar por la interfaz eth0, si no se pusiera MASQUERADE entonces solo el dispositivo que tiene el firewall seria capaz de acceder a internet.
+
+## Ejercicio 19
+
+La diferencia entre SNAT y MASQ, es que SNAT cambia la dirección origen del paquete, mientras que MASQ es un tipo de SNAT usado para la asignación dinamica de IPS.
+
+## Ejercicio 20
+
+iptables -A INPUT -p tcp --dport 80 -m state --state NEW -m recent --set
+iptables -A INPUT -p tcp --dport 80 -m state --state NEW -m recent --update --seconds 60 --hitcount 16 -j DROP
+
+Estas dos reglas trabajan juntas para limitar las conexiones nuevas al puerto 80 a no más de 15 por minuto desde una misma dirección IP.
+
+    -A INPUT: Este comando añade una nueva regla al final de la cadena INPUT. El tráfico entrante será procesado por esta cadena.
+
+    -p tcp --dport 80: Estas opciones restringen la regla para que sólo se aplique a los paquetes TCP destinados al puerto 80, que es el puerto por defecto para el tráfico HTTP.
+
+    -m state --state NEW: Estas opciones hacen que la regla sólo se aplique a las nuevas conexiones. iptables mantiene un seguimiento del estado de las conexiones, y esta opción permite que la regla se aplique sólo a los paquetes que están iniciando una nueva conexión.
+
+    -m recent --set: Esta opción añade la dirección IP de origen del paquete a la lista de direcciones recientes.
+
+    -m recent --update --seconds 60 --hitcount 16: Esta opción actualiza la marca de tiempo de la dirección IP de origen si está en la lista de direcciones recientes y ha enviado 16 o más paquetes en los últimos 60 segundos.
+
+    -j DROP: Esta opción especifica la acción a tomar si un paquete coincide con la regla. En este caso, el paquete será descartado y no se enviará ninguna respuesta al emisor.
+
+Con estas reglas en su lugar, cualquier dirección IP que intente iniciar más de 15 nuevas conexiones al puerto 80 en un minuto será bloqueada por el resto de ese minuto.
+
+## Ejercicio 21
+
