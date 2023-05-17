@@ -217,3 +217,18 @@ Si los ficheros a encontrar tienen huecos vacios al intentar mostrarlos con cat,
 
 Si hay demasiados archivos no se encontraran todos debido a la longitud de linea.
 
+## Ejercicio 28
+
+La salida de echo /usr/bin/l*p3 sera /usr/bin/l*p3 de forma literal.
+
+## Ejercicio 29
+
+Para la realización del script hay que tener en cuenta que si leemos el fichero fuera del bucle la variable a la que se asigne se restablecera a vacio, por ello declaramos una variable prev que almacene la linea previa interpretando que iniciamos por una linea vacia, iterando por las demás lineas retirando duplicados.
+
+## Ejercicio 30
+
+En el script 30 se usa la siguiente linea para convertir la salida de pgrep en un array, comando el cual busca los procesos con cuyo nombre y devuelve una lista: 
+
+list=($(pgrep "$1"))
+
+Despues se mata a los procesos uno a uno, tener en cuenta que a kill se le podria meter la lista de pgrep directamente sin usar un array simplificando el script notablemente.
