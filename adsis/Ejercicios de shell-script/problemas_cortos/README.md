@@ -187,3 +187,33 @@ Como la maquina que se usa para la ejecucion del script no estara siempre encend
 
 @daily 5 cron.daily (test -x /etc/ej22.sh && /etc/ej22.sh > /dev/null 2>&1)
 
+## Ejercicio 23
+
+El programa empieza mostrando el valor inicial de las variables var0 y var1, cuyo valor es 0 y 1 respectivamente, posteriormente se hace una llamada a funcion f_var0 y f_var1, primero llamando f_var0, se muestra el valor de var0 el cual es un 0 y despues se le asigna un string "zero" mostrandolo tambien.
+
+Se ejecuta f_var1 mostrando un 1 y posteriormente "one", se vuelve a mostrar con los valores actualizados, despues se asgina un nuevo valor a var0 y var1, la diferencia es que al entrar en sub_shell los valores nuevos introducidos por las funciones no se actualizaran mostrando al final los valores con los que se llamo a las funciones.
+
+## Ejercicio 24
+
+Inicialmente se ejecuta un comando tar con las opciones cj para todo archivo html que se encuentre en el directorio, despues de envia ese archivo tar con una pipe a una maquina mediante ssh descomprimiendo este con las opciones xj.
+
+## Ejercicio 25
+
+El script expuesto asigna a la var1 un string "grace" y declara otra variable var2 con un sttring "hopper", posteriormente con /bin/bash -c se ejecuta el comando entrecomillado mostrando -hopper y posteriormente muestra grace-hopper.
+
+Al poner \$var1, lo que estamos haciendo es evitar la expansion de variables, lo que significa que la variable 1 no se exportara a no ser que pongamos export en su definicion.
+
+## Ejercicio 26
+
+El siguiente script esta ejecutando el mismo script que se llamo con el argumento $0 y esta metiendo el resultado por una pipe a una segunda ejecuccion de este script con & ejecutandolo en segundo plano, lo que podria producir un bucle infinito de llamadas creando infinitos sub_procesos zombie.
+
+## Ejercicio 27
+
+Los problemas sucedidos de la ejecuccion de este comando:
+
+cat $(find . -type f) > ../contenido_ficheros.txt
+
+Si los ficheros a encontrar tienen huecos vacios al intentar mostrarlos con cat, este no los encontrara.
+
+Si hay demasiados archivos no se encontraran todos debido a la longitud de linea.
+
