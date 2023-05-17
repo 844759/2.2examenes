@@ -1,6 +1,5 @@
 #!/bin/bash
 
-mkdir -p dir
 sec_delay=$(echo "24*60*60" | bc)
 
 admin="admin@gmail.com"
@@ -11,9 +10,9 @@ do
     then
         kill $ppid
         echo "Se elimino un proceso zombie, cuyo comando fue: "$comm"" | mail -s "Creacion zombre" "$user@gmail.com"
-        var=$(echo "$pid, $comm")
+        lista=$(echo "$pid, $comm")
     fi
 
 done < <(ps -eo pid,ppid,etimes,euser,comm | grep -v "ELAPSED")
 
-mail -s "Lista de procesos zombie eliminados" "$admin" < <(echo "$var")
+mail -s "Lista de procesos zombie eliminados" "$admin" < <(echo "$lista")
