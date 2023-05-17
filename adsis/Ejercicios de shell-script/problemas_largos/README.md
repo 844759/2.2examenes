@@ -13,3 +13,7 @@ Para que el proceso se ejecute cada 24 horas habra que usar acron, para ello se 
 @daily 5 cron.daily (test -x /etc/ej1.sh && /etc/ej1.sh > /dev/null 2>&1)
 
 ## Ejercicio 2
+
+Para la realización de este script se usa md5sum, se calcula en la maquina introducida como parametro para comparar en la local, si el sum es igual entonces el fichero ya esta copiado, no hace falta hacer nada.
+
+Se utiliza el comando scp para copiar el fichero de forma segura a la maquina destino, en caso de un directorio nos aseguramos que cada contenido en el sea un fichero y los vamos enviando.
