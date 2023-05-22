@@ -21,7 +21,7 @@ do
         # Buscamos la clave para ver si hay coincidencia
         match=$(grep "$cript" /etc/shadow)
 
-        if [ -z "$match" ]
+        if [ ! -z "$match" ]
         then
             user=$(echo "$match" | cut -d':' -f1)
             echo ""$clave" "$funcion" ("$user")"
