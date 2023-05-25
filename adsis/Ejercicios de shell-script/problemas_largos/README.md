@@ -40,3 +40,26 @@ Para obtener la especificación adecuada se tendra que modificar el fichero cron
 Para la realizacion de este script se ha de modificar el fichero /etc/crontab con la siguiente linea para la automatizacion del proceso:
 
 59 23 * * * ( test -x ./ej6.sh && ./ej6.sh > /dev/null 2>&1)
+
+## Ejercicio 7
+
+He de mirar la integridad de los ficheros siempre?
+Es más correcto guardar el estado mediante ps -e o leyendo su fichero de estado?
+
+## Ejercicio 8
+
+Para la modificacion de /etc/crontab deberemos añadir la linea:
+
+14 3 * * * (test -x ./ej8_2.sh && ./ej8_2.sh > /dev/null 2>&1)
+
+## Ejercicio 9 
+
+Para la modificacion de /etc/crontab deberemos añadir la linea:
+
+0 */1 * * * (test -x ./ej9.sh && ./ej9.sh > /dev/null 2>&1)
+
+## Ejercicio 10
+
+Para la modificacion de /etc/crontab deberemos añadir la linea:
+
+0 6-23/2 * * * (test -x ./ej10.sh && ./ej10.sh > /dev/null 2>&1)
