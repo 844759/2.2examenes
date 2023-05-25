@@ -63,3 +63,22 @@ Para la modificacion de /etc/crontab deberemos añadir la linea:
 Para la modificacion de /etc/crontab deberemos añadir la linea:
 
 0 6-23/2 * * * (test -x ./ej10.sh && ./ej10.sh > /dev/null 2>&1)
+
+## Ejercicio 13
+Para la modificacion de /etc/crontab deberemos añadir las lineas:
+
+15 6 * 1-6 2 (test -x ./ej13.sh && ./ej13.sh > /dev/null 2>&1)
+
+16 15 * 7-12 4 (test -x ./ej13.sh && ./ej13.sh > /dev/null 2>&1)
+
+## Ejercicio 14
+
+Para la modificacion de /etc/crontab deberemos añadir la linea:
+
+37 7 */2 * * (test -x ./ej14.sh && ./ej14.sh > /dev/null 2>&1)
+
+## Ejercicio 17
+
+Para la modificacion de /etc/crontab deberemos añadir la linea:
+
+*/20 * * * * (test -x ./ej17.sh && ./ej17.sh > /dev/null 2>&1)
